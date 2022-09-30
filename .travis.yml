@@ -1,7 +1,7 @@
 env:
   global:
   - VERSION="v$(jq <package.json -r '.version')"
-  - GH_BLOB_URL="https://github.com/SimonLammer/anki-persistence/blob/$TRAVIS_COMMIT"
+  - GH_BLOB_URL="https://github.com/git9527/anki-persistence/blob/$TRAVIS_COMMIT"
   - GH_SCRIPT_URL="$GH_BLOB_URL/script.js"
 language: generic
 before_install:
@@ -22,7 +22,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: FY6U+ZPISs+u9X15ng0R6IZxgTbkQCEV3mjQwAiChnUVAE4cFAAtWowiFE0ZetDJE8b+h3v4pLBibHgQruMyAcm9ec4HIOVCYgMM9o2icMI+FioMhwAvuEJ8bRCtE/6uY7tG25CKlaaMm7DIuR0xgUPvdKqJgcRP2Ptuu8AGVR+Qq6lpxnZNBJkckbiRzY0DKnY55X2B5x83WhN273lHIfnkqoSnN7pnWN+8YK8/HCBTHysb9X5BZvL1ZcgpkWknOw0yQ5F3uOL+lRZMojCs4EwKMRyVzQtmj0g3p7SeU6B3zVVO75ZsBVp7tlSMbdA2Lt9vk/Al0iV0b/kboRATkYj/dvn/qw7yMX7E6dKUVb7vy8ZovEY7SnOQ3xUUahlH+yY31fq2Oc/rZ/DiZDSdeIS41BTVZbBNdmg5KmTdqXSGh65R6DAP+SLRF/VZRvObFnGKl6ej36WCxjeU3jVdB1+PhBboLS5vTQ/vyUuUAgHO3unshlXtTO20KLSA1hiGKpTrWPV1daJTv2+cOZ0GaL+aaz335w/l294LRVZ3TPLLtgqJd+EDpe+3tIWdrB+lQjyByg4F7B+pLbLXiaNJuthjjgjkFD47KorY/MZ8OgUde1MuaVKehysc5I7cMb/Uo0PqPTk9EinMb0DireX/oQhXxrCh/zR0rmMcqfXPgc4=
+    secure: lYyi5YjCXeNog6i8mAwgCQ
   file:
   - minified.js
   - script.js
@@ -31,8 +31,8 @@ deploy:
   prerelease: $([ $(echo $VERSION | sed -r -e 's/v([0-9]+).*/\1/') == $(git describe --tags --abbrev=0 | sed -r -e 's/v([0-9]+).*/\1/') ] && printf 'true' || printf 'false') # false if major version changed, true otherwise
   draft: false
   on:
-    repo: SimonLammer/anki-persistence
-    branch: master
+    repo: git9527/anki-persistence
+    branch: git9527-release
     condition: $(git describe --tags --abbrev=0) != $VERSION
 cache:
   directories:
